@@ -10,7 +10,7 @@ Once the move/copy is complete it will log the completion time and duration.
 It will then run the library update to Radarr and this is will unmonitor the movies that have been moved. 
 
 If you want to go the extra step and delete the movies from Radarr you can add
-'''
+'''curl
 curl "http://$RADARRIP:$RADARRPORT/api/movie/$radarr_movie_id" -X GET -H "X-Api-Key: $RADARRAPIKEY"
 curl "http://$RADARRIP:$RADARRPORT/api/movie/$radarr_movie_id" -X DELETE -H "X-Api-Key: $RADARRAPIKEY"
 '''

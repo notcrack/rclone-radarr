@@ -24,7 +24,7 @@ if find $FROM* -type f -mmin +15 | read
   start=$(date +'%s')
   echo "$(date "+%d.%m.%Y %T") RCLONE UPLOAD STARTED" | tee -a $LOGFILE
   # copy FILES OLDER THAN 15 MINUTES 
-  rclone copy "$FROM" "$TO" --transfers=20 --checkers=20 --min-age 15m --log-file=$LOGFILE
+  rclone copy "$FROM" "$TO" --fast-list --drive-chunk-size 128M --transfers 20 --checkers 25 --drive-acknowledge-abuse=true -vP --delete-after --min-age 15m --log-format date,time,shortfile --log-file=$LOGFILE
   echo "$(date "+%d.%m.%Y %T") RCLONE UPLOAD FINISHED IN $(($(date +'%s') - $start)) SECONDS" | tee -a $LOGFILE
 fi
 curl "http://$RADARRURL:$RADARRPORT/api/command" -X POST -d "{'name': 'RescanMovie'}" --header "X-Api-Key:$RADARRAPIKEY"

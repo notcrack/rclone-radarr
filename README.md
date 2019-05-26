@@ -16,3 +16,6 @@ If you want to go the extra step and delete the movies from Radarr you can add
 `curl "http://$RADARRIP:$RADARRPORT/api/movie/$radarr_movie_id" -X DELETE -H "X-Api-Key: $RADARRAPIKEY"`
 
 beneath the original curl command on line 30
+
+Added - --fast-list --drive-chunk-size 128M --transfers 20 --checkers 25 --drive-acknowledge-abuse=true -vP --log-format date,time,shortfile
+to the rclone command to make the transfers and logging a little smoother
